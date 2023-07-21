@@ -64,5 +64,6 @@ If we were to use this on MPA / Page refresh, it works perfectly fine, but on SP
 - Would I need to duplicate the logic to isBrowser for it to work with SPA?
 - Should it be fully client-side so that it works with SPA? For example, isBrowser instead of isServer?
 - Does that mean everything would need to be client-side for it to work with the SPA version?
+- Should I leave it without the conditionals, so that it decides to run it based on MPA or SPA?
 
 
