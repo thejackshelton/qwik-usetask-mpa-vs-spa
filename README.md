@@ -10,11 +10,11 @@
 
 # useTask$ MPA vs. SPA differences.
 
-This repository highlights the differences between what runs in a useTask$ when running SPA with <Link /> and MPA on page refresh.
+This repository highlights the differences between what runs in a useTask$ when running SPA with the Link component and MPA on page refresh.
 
 The reason this reproduction was created, is because we noticed there was functionality that worked on MPA, that did not on SPA navigation. 
 
-When we don't specify the **isServer** and **isBrowser** conditionals, it will be rendered based on MPA or SPA navigation.
+When we don't specify the **isServer** and **isBrowser** conditionals, it will decide where it's run based on MPA or SPA navigation.
 
 For example:
 
@@ -35,9 +35,11 @@ useTask$(({ track }) => {
 
 Will run on the client with SPA
 
+Even when we have the conditionals, it will work server side with MPA, where it that code is not run in an SPA app.
+
 For example, in a real-world use case like Qwik UI, we currently have an accordion with the defaultValue prop, this prop intends to open the accordion item by default.
 
-We also have two tasks, one that resets the trigger values, and another that will open the default task.
+We also have two tasks, one that resets the trigger values, and another that will open the accordion item by default.
 
 ```tsx
 useTask$(function resetTriggersTask({ track }) {
@@ -57,9 +59,10 @@ useTask$( function defaultValueTask() => {
 })
 ```
 
-If we were to use this on MPA, it works perfectly fine, but on SPA, that isServer conditional would never run. Knowing this:
+If we were to use this on MPA / Page refresh, it works perfectly fine, but on SPA, that isServer conditional would never run. Knowing this:
 
 - Would I need to duplicate the logic to isBrowser for it to work with SPA?
-- Should it be fully client-side so that it works with SPA?
+- Should it be fully client-side so that it works with SPA? For example, isBrowser instead of isServer?
+- Does that mean everything would need to be client-side for it to work with the SPA version?
 
 
