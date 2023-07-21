@@ -35,7 +35,7 @@ useTask$(({ track }) => {
 
 Will run on the client with SPA
 
-Even when we have the conditionals, it will work server side with MPA, where it that code is not run in an SPA app.
+Even when we have the conditionals, it will work server side with MPA, where as that code is not run in an SPA app.
 
 For example, in a real-world use case like Qwik UI, we currently have an accordion with the defaultValue prop, this prop intends to open the accordion item by default.
 
